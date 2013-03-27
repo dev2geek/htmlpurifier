@@ -20,7 +20,7 @@ class HTMLPurifier_AttrDef_HTML_Class extends HTMLPurifier_AttrDef_HTML_Nmtokens
         $ret = array();
         foreach ($tokens as $token) {
             if (
-                ($allowed === null || isset($allowed[$token])) &&
+                ($allowed === null || isset($allowed[$token]) || (strpos($token, "brush") === 0/* 7n: pass class like "brush:js;toolbar:false;"*/) ) &&
                 !isset($forbidden[$token]) &&
                 // We need this O(n) check because of PHP's array
                 // implementation that casts -0 to 0.
